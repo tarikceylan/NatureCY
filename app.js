@@ -9,4 +9,9 @@ const client = new twitter ({
     acces_token_secret: process.env.ACCESS_SECRET
 });
 
-console.log();
+client.post('statuses/update', {status: 'I Love Twitter'},  
+    (error, tweet, response) => {
+        if(error) throw error;
+        console.log(tweet);
+        console.log(response);
+  });
