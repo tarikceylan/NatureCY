@@ -83,7 +83,7 @@ function init() {
   start();
   return setInterval(() => {
     start();
-  }, 1000 * 60 * 60 * 4);
+  }, 1000 * 60 * 60 * 6);
 }
 
 init();
