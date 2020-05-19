@@ -12,7 +12,7 @@ const client = new Twitter({
 const arr = [];
 
 async function getPosts() {
-  const url = `https://www.reddit.com/r/${process.env.SUBREDDITS}/top/.json?limit=${process.env.LIMIT}`;
+  const url = `https://www.reddit.com/r/${process.env.SUBREDDITS}/rising/.json?limit=${process.env.LIMIT}`;
   try {
     const data = await fetch(url);
     const posts = await data.json();
@@ -26,18 +26,29 @@ async function getPosts() {
 function filterContent(data) {
   const images = data.filter(cur => cur.data.url.endsWith('.jpg') || cur.data.url.endsWith('.png'));
   const posts = images.map(cur => ({
+    title: cur.data.title,
     url: cur.data.url,
+    sub: cur.data.subreddit_name_prefixed,
     id: cur.data.id
   }));
   return posts;
 }
 
+function getStatus(title, sub) {
+  if (title.length < 100) {
+    return `${title} via ${sub}`;
+  }
+  const lastSpace = title.slice(0, 100).lastIndexOf(' ');
+  return `${title.slice(0, lastSpace)}... via ${sub}`;
+}
+
 async function postTweet(post, buf) {
-  const { id } = post;
+  const { title, sub, id } = post;
   try {
     const media = await client.post('media/upload', { media: buf });
     if (media) {
       const status = {
+        status: getStatus(title, sub),
         media_ids: media.media_id_string
       };
       try {
@@ -70,7 +81,7 @@ function removeOldPosts(posts) {
 }
 
 async function start() {
-  const posts = await getPosts(); 
+  const posts = await getPosts(); // todo: add filter for reposts
   const content = filterContent(posts);
   const newPosts = removeOldPosts(content);
   newPosts.forEach((cur) => {
