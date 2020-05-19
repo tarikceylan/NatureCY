@@ -16,7 +16,7 @@ async function getPosts() {
   try {
     const data = await fetch(url);
     const posts = await data.json();
-    return;
+    return posts.data.children;
   } catch (err) {
     console.log('Error fetching reddit content', err);
     return [];
