@@ -24,7 +24,7 @@ async function getPosts() {
 }
 
 function filterContent(data) {
-  const images = data.filter(cur => cur.data.url.endsWith('.jpg') || cur.data.url.endsWith('.png') || cur.data.url.endsWith('.gif'));
+  const images = data.filter(cur => cur.data.url.endsWith('.jpg') || cur.data.url.endsWith('.png'));
   const posts = images.map(cur => ({
     url: cur.data.url,
     id: cur.data.id
