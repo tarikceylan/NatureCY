@@ -4,7 +4,8 @@
   "description": "A twitter bot that posts from reddit",
   "main": "app.js",
   "dependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {},
   "scripts": {
