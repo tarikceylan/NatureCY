@@ -12,7 +12,7 @@ const client = new Twitter({
 const arr = [];
 
 async function getPosts() {
-  const url = `https://www.reddit.com/r/${process.env.SUBREDDITS}/rising/.json?limit=${process.env.LIMIT}`;
+  const url = `https://www.reddit.com/r/${process.env.SUBREDDITS}/top/.json?limit=${process.env.LIMIT}`;
   try {
     const data = await fetch(url);
     const posts = await data.json();
