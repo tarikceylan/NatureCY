@@ -1,0 +1,23 @@
+{
+  "name": "twitter-reddit-bot",
+  "version": "1.0.0",
+  "description": "A twitter bot that posts from reddit",
+  "main": "app.js",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tarikceylan/twitter-reddit-bot.git"
+  },
+  "author": "tarikceylan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tarikceylan/twitter-reddit-bot/issues"
+  },
+  "homepage": "https://github.com/tarikceylan/twitter-reddit-bot#readme"
+}
